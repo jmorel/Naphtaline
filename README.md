@@ -13,7 +13,9 @@ This project is no longer actively developed, but there are now excellent altern
 ## DB structure
 
 ### Codes meaning
+
 status:
+
     code    bug                             feature
     -----------------------------------------------------------
     1       corrected                       implemented
@@ -22,6 +24,7 @@ status:
     4       (undefined - feature only)      rejected
 
 severity/urgency (urgency is for features)
+
     code    bug                             feature
     -----------------------------------------------------------
     1       light                           weak
@@ -29,6 +32,7 @@ severity/urgency (urgency is for features)
     3       critical                        critical
     
 user level:
+
     code    level
     --------------
     1       normal
