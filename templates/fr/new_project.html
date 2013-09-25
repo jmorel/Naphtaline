@@ -1,0 +1,99 @@
+## -*- coding: utf-8 -*-
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>Naphtaline: BUG Tracking made REALLY simple (and beautiful)</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+	<link rel="stylesheet" type="text/css" href="/css/layout-1col.css" />
+    <link rel="stylesheet" type="text/css" href="/css/new_project.css" />
+    
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script type="text/javascript" src="/js/jquery.pause.js"></script>
+	<script type="text/javascript" src="/js/new_project.js"></script>
+	
+</head>
+
+
+<body>
+
+	<div class="logo">
+		<img class="logo" src="/pix/logo.png" alt="naphtaline logo">
+		<div class="name">Naphtaline</div>
+		<div class="subtitle">Bug tracking made really simple</div>
+	</div>
+	
+	<div class="page_content">
+	   <div class="title">Nouveau projet</div>
+	   <div class="info">
+	       En utilisant ce formulaire, vous pourrez créer votre propre projet sur <a href="http://www.naphtaline.net">Naphtaline</a>.<br/>
+	       Vous ne savez pas ce qu'est Naphtaline ? <a href="http://www.naphtaline.net/about">Cliquez ici</a> pour en savoir plus.
+	   </div>
+	   
+	   <form id="new_project">
+	       <div class="title2">Première étape : les caractéristiques de votre projet</div>
+	       <div class="entry">Le nom de votre projet</div>
+	       <div class="error" id="name_empty">Vous ne pouvez pas choisir un nom vide.</div>
+	       <input type="text" name="projectName" id="projectName"/>
+	       
+	       <div class="entry">Le "nom web" de votre projet</div>
+		   Le "nom web" est une version courte du nom qui sera inclue dans l'adresse. Elle ne peut contenir que des caractères alphanumériques en minuscule (a-z0-9).<br/>
+		   Par exemple, un project appelé "Mon projet au nom beaucoup trop long" avec le "nom web" de "monprojet" sera accessible à l'adresse http://projects.naphtaline.net/myproject<br/>
+	       <div class="error" id="webname_chars">Le nom web que vous avez choisit contient des caractères non autorisés.</div>
+	       <div class="error" id="webname_used">Le nom web que vous avez choisit est déjà utilisé par un autre projet.</div>
+	       <div class="error" id="webname_empty">Vous devez choisir un nom web.</div>
+	       <input type="text" name="projectWebName" id="projectWebName"/>
+		   <div class="entry">La langue de votre projet</div>
+			Choisissez ici la langue que vous désirez pour l'interface de votre projet.<br/>
+		   <select name="lang" id="lang">
+		   		<option value="en">english</option>
+				<option value="fr" selected="selected">français</option>
+		   </select>
+	       
+	       
+	       <div class="title2">Seconde étape : votre compte administrateur</div>
+	       <div class="entry">Login</div>
+	       <div class="error" id="login_empty">Vous devez choisir un login</div>
+	       <input type="text" name="login" id="login"/>
+	       <div class="entry">Mot de passe</div>
+	       <div class="error" id="pwd_error">Vous devez entrer un mot de passe.</div>
+	       <div class="error" id="pwd_bis_error">Les deux mots de passe que vous avez entré sont différents.</div>
+	       <div class="pwd1">
+	           Entrez votre mot de passe<br/>
+    	       <input type="password" name="pwd1" id="pwd1"/>
+    	   </div>
+    	   <div class="pw2">
+    	       Ré-entrez votre mot de passe (pour vérification)<br/>
+    	       <input type="password" name="pwd2" id="pwd2"/>
+    	   </div>
+	       <div class="entry">E-mail</div> 
+	       <div class="error" id="email_empty">Vous devez entrez une adresse email valide.</div>
+	       <input type="text" name="email" id="email"/>
+	       
+	       <div class="title2">Dernière étape : créer le projet</div>
+	       <input type="submit" name="ok" value="créer" id="create"/>
+	   </form>
+	   
+	   <div class="loading">
+	       <img src="/pix/loading_wheel.gif" alt="loading" /><br/>
+	       Merci de patienter pendant la création du projet.
+	   </div>
+	   
+	   <div class="error_connect">
+	       Une erreur est survenue. Merci de bien vouloir réessayer plus tard.
+	   </div>
+	   
+	   <div class="success">
+			Votre projet a été créé avec succès. Un mail récapitulatif vous a été envoyé.<br/>
+			Vous allez être redirigé vers la page de votre projet. Si vous n'êtes pas redirigé dans les 15 secondes, <a href="" id="project_link">cliquez ici</a>.
+	   </div>
+	   
+	</div>
+		
+
+</body>
+
+</html>

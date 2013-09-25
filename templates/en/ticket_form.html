@@ -1,0 +1,76 @@
+## -*- coding: utf-8 -*-
+<form action="/saveTicket" method="" class="create" enctype="multipart/form-data">
+    <!-- hidden values used to convey data -->
+    <input type="hidden" name="project" value="${projectWebName}" />
+    <input type="hidden" name="category" value="${category}" />
+    <input type="hidden" name="mode" value="${mode}" />
+
+    <div class="ticket_title"><input type="text" name="name" id="title" value="${(name=='')*'Insert title'+name}" /></div>
+    <div class="ticket_status">
+    	<div class="field">Status</div>
+    	<div class="value">
+           <select name="status" id="status">
+               <option value="3" ${(int(status)==3)*'selected="selected"'}>Unknown</option>
+               % if userLevel >= 2:
+               <option value="2" ${(int(status)==2)*'selected="selected"'}>Being taken care of</option> 
+               <option value="1" ${(int(status)==1)*'selected="selected"'}>${(category=='feature')*'Implemented'+(category=='bug')*'Corrected'}</option>
+               ${(category=='feature')*('<option value="4" '+((int(status)==4)*'selected="selected"')+'>Rejected</option>')}
+               % endif
+           </select>
+    	</div>
+    </div>
+    <div class="ticket_severity">
+    	<div class="field">${(category=='bug')*'Severity'+(category=='feature')*'Urgency'}</div>
+    	<div class="value">
+           <select name="severity" id="severity">
+               <option value="1" ${(int(severity)==1)*'selected="selected"'}>${(category=='bug')*'Light'+(category=='feature')*'Weak'}</option>
+               <option value="2" ${(int(severity)==2)*'selected="selected"'}>${(category=='bug')*'Serious'+(category=='feature')*'Strong'}</option> 
+               <option value="3" ${(int(severity)==3)*'selected="selected"'}>${(category=='bug')*'Critical'+(category=='feature')*'Critical'}</option>
+           </select>
+    	</div>
+    </div>
+    <div class="ticket_description">Description</div>
+    <div class="ticket_description_content">
+        <textarea id="description" name="description">
+			% if description == '':
+Explain here what ${(category=='bug')*u'the defect you found'+(category=='feature')*u'your feature request'} is.
+			% else:
+${description}
+			% endif
+		</textarea>
+    </div>
+    
+    <div class="add_files">
+       <div class="add_files_title">Attach files</div>
+        % for file in files:
+        <div class="file">
+            <div class="file_message" id="deleting"><img src="/pix/loading_wheel.gif" alt="loading wheel" /> Deleting file, please wait.</div>
+            <div class="file_message" id="deleting_error">The file could not be deleted.</div>
+            <div class="file_message" id="deleting_success">The file was deleted with success.</div>
+            <div class="file_data">
+                <span class="remove_existing" id="${file['id']}"><img src="/pix/red_cross.png" alt="remove this file button" /></span>${file['name']}
+                <input type="hidden" name="hidden_file" id="${file['id']}" />
+            </div>
+        </div>
+        % endfor
+    </div>
+    <div><span id="add_file">Click here</span> to add a new file.</div>
+    <div class="buttons">
+       <input type="submit" id="ok" value="OK"/>
+    </div>
+</form>
+
+
+<div class="loading">
+    Please wait while we process your ${(category=='bug')*'report'+(category=='feature')*'request'}.<br/>
+    <img src="/pix/loading_wheel.gif" alt="loading wheel" />
+</div>
+<div class="thanks">
+    Thanks for ${(category=='bug')*'reporting a new defect'+(category=='feature')*'requesting a new feature'}.<br/>
+    If you're not redirected within 5 seconds to your newly created ${(category=='bug')*'defect report'+(category=='feature')*'feature request'}, <a href="" id="redirecturl">click here</a>.
+</div>
+<div class="error">
+    An error occured !<br/>
+    <span id="tryagain">Click here</span> to try again.
+</div>
+

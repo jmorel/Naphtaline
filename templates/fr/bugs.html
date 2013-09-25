@@ -1,0 +1,152 @@
+## -*- coding: utf-8 -*-
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>Naphtaline: BUG Tracking made REALLY simple (and beautiful)</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+	<link rel="stylesheet" type="text/css" href="/css/layout-3col.css" />
+	<link rel="stylesheet" type="text/css" href="/css/header.css" />
+	<link rel="stylesheet" type="text/css" href="/css/first_col_elements.css" />
+	<link rel="stylesheet" type="text/css" href="/css/filters_legend_box.css" />
+	<link rel="stylesheet" type="text/css" href="/css/tickets_list.css" />
+	<link rel="stylesheet" type="text/css" href="/css/ticket.css" />
+	<link rel="stylesheet" type="text/css" href="/css/comments.css" />
+	<link rel="stylesheet" type="text/css" href="/css/generic.css" />
+	<link rel="stylesheet" type="text/css" href="/css/create.css" />
+
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script type="text/javascript" src="/js/jquery.pause.js"></script>
+	<script type="text/javascript" src="/js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="/js/filters.js"></script>
+	<script type="text/javascript" src="/js/tickets_list.js"></script>
+	<script type="text/javascript" src="/js/comments.js"></script>
+	<script type="text/javascript" src="/js/ajaxupload.2.3.js"></script>
+	<script type="text/javascript" src="/js/ticket.js"></script>
+    <script type="text/javascript" src="/js/ticket_form.js"></script>
+    
+    
+</head>
+
+
+
+<%
+    severityPix = ( '/pix/carre_jaune.png', '/pix/carre_orange.png', '/pix/carre_rouge.png' )
+    severityLabel = [ u'Léger', u'Sérieux', u'Critique' ]
+    statusPix = ( '/pix/carre_vert.png', '/pix/carre_gris.png', '/pix/carre_blanc.png' )
+    statusLabel = [ u'Corrigé', u'En cours', u'inconnu' ]
+%>
+
+
+
+<body>
+
+    <div class="misc">
+        <div id="projectWebName">${projectWebName}</div>
+        <div id="category">${category}</div>
+        <div id="selectedTicketRelativeID">${selectedTicketRelativeID}</div>
+        <div id="solved">${solved}</div>
+    </div>
+    
+	<div class="header">
+		<div class="searchbox"><form class="search" action="/${projectWebName}/search" method="GET"><input type="text" name="search" value="rechercher"/></form></div>
+		<span class="project_name">Projet ${projectName} sur Naphtaline</span>
+	</div>
+
+	<div class="col1">
+		<img class="logo" src="/pix/logo.png" alt="naphtaline logo"/>
+		<div class="pages">
+			<a class="${(category == 'bug')*'selected_page'+(category != 'bug')*'page_no_bottom_border'}" href="/${projectWebName}/bug">BUGS</a>
+			<a class="${(category == 'feature')*'selected_page'+(category != 'feature')*'page'}" href="/${projectWebName}/feature">FONCTIONNALITES</a>
+			<a class="page" href="/${projectWebName}/search">RECHERCHE</a>
+			% if int(userLevel) == 2:
+			<a class="page" href="/${projectWebName}/users">UTILISATEURS</a>
+			% endif
+			<a class="page" href="/${projectWebName}/profile">PROFIL</a>
+		</div>
+		<a class="disconnect" href="/${projectWebName}/disconnect">SE DECONNECTER</a>
+	</div>
+	
+	<div class="col2">
+	
+
+			<div class="tabs">
+				<div class="selected_tab" id="legend_tab">Légende</div>
+				<!--<div class="tab" id="filters_tab">Filtres</div>-->
+				<span class="toggle_content" id="show_button">Montrer</span>
+				<span class="toggle_content" id="hide_button">Cacher</span>
+			</div>
+			
+			<div class="content">
+				<div id="legend_content">
+					${u'Sévérité' if category=='bug' else u'Urgence'} : 
+						<img src="/pix/red_square.png" alt="carré rouge" /> Critique
+						<img src="/pix/orange_square.png" alt="carré rouge" /> ${u'Sérieux' if category=='bug' else u'Forte'}
+						<img src="/pix/yellow_square.png" alt="carré rouge" /> ${u'Léger' if category=='bug' else u'Faible'}
+					<br/>
+					Statut :
+						<img src="/pix/green_square.png" alt="carré rouge" /> ${u'Corrigé' if category=='bug' else u'En place'} 
+						<img src="/pix/grey_square.png" alt="carré rouge" /> En cours
+						<img src="/pix/white_square.png" alt="carré rouge" /> Inconnu
+						% if category == 'feature':
+						<img src="/pix/crossed_square.png" alt="carré rouge" /> Rejeté
+						% endif
+				</div>
+				<!--
+				<div id="filters_content">
+					<div class="filters_buttons">
+						Filtrer sur la sévérité : 
+							<span class="selected_filter_option" id="filter_severity_critical">critique</span>
+							<span class="selected_filter_option" id="filter_severity_serious">sérieux</span> 
+							<span class="selected_filter_option" id="filter_severity_light">léger</span>
+						<br/>
+						Filtrer sur le statut :
+							<span class="selected_filter_option" id="filter_status_corrected">corrigé</span>
+							<span class="selected_filter_option" id="filter_status_beingtakencareof">en cours</span> 
+							<span class="selected_filter_option" id="filter_status_unknown">inconnu</span>
+					</div>
+				</div>
+				-->
+			</div>
+	
+	
+		<div class="report"><a href="/${projectWebName}/${category}/new">${(category=='bug')*u'Signaler un bug'+(category=='feature')*u'Demander une fonctionnalité'}</a></div>	
+		
+		
+		<div class="tickets_tabs">
+			<div class="${'tab' if solved else 'selected_tab'}" id="bugs_tab">${u'Bugs' if category == 'bug' else u'Fonctionnalités'}</div>
+			<div class="${'selected_tab' if solved else 'tab'}" id="corrected_bugs_tab">${u'Bugs corrigés' if category == 'bug' else u'Fonctionnalités en place/refusées'}</div>
+		</div>
+		<div class="tickets">		
+    		<!--<div class="infos">Bold defects are the ones containing updates since your last visit.</div>-->
+    		<div class="tickets_list_message" id="tickets_loading"><img src="/pix/loading_wheel.gif" alt="loading wheel" /></div>
+    		<div class="tickets_list_message" id="tickets_loading_error">Impossible de charger la liste de tickets. <span id="retry_loading_tickets">Cliquez ici</span> pour réessayer.</div>
+    		<div class="dummy"></div>
+    		<div class="tickets_list" id="tickets_list">
+    			${ticketsList}
+    		</div>
+		</div>
+
+	</div>
+		
+	<div class="col3">
+		
+		
+	
+		<div class="ticket">
+            ${selectedTicketHTML}
+        </div>
+           
+		
+		<div class="comments">
+            ${comments}
+		</div>
+		
+	</div>
+	
+</body>
+
+</html>

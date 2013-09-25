@@ -1,0 +1,78 @@
+## -*- coding: utf-8 -*-
+<form action="/saveTicket" method="" class="create" enctype="multipart/form-data">
+    <!-- hidden values used to convey data -->
+    <input type="hidden" name="project" value="${projectWebName}" />
+    <input type="hidden" name="category" value="${category}" />
+    <input type="hidden" name="mode" value="${mode}" />
+
+    <div class="ticket_title"><input type="text" name="name" id="title" value="${name if name != '' else u'Intitulé'}" /></div>
+    
+	<div class="ticket_status">
+    	<div class="field">Statut</div>
+    	<div class="value">
+           <select name="status" id="status">
+               <option value="3" ${(int(status)==3)*'selected="selected"'}>Inconnu</option>
+               % if userLevel >= 2:
+               <option value="2" ${(int(status)==2)*'selected="selected"'}>En cours</option> 
+               <option value="1" ${(int(status)==1)*'selected="selected"'}>${(category=='feature')*u'En place'+(category=='bug')*u'Corrigé'}</option>
+               ${(category=='feature')*('<option value="4" '+((int(status)==4)*'selected="selected"')+u'>Rejeté</option>')}
+               % endif
+           </select>
+    	</div>
+    </div>
+	
+    <div class="ticket_severity">
+    	<div class="field">${(category=='bug')*u'Sévérité'+(category=='feature')*u'Urgence'}</div>
+    	<div class="value">
+           <select name="severity" id="severity">
+               <option value="1" ${(int(severity)==1)*'selected="selected"'}>${(category=='bug')*u'Léger'+(category=='feature')*u'Faible'}</option>
+               <option value="2" ${(int(severity)==2)*'selected="selected"'}>${(category=='bug')*u'Sérieux'+(category=='feature')*u'Forte'}</option> 
+               <option value="3" ${(int(severity)==3)*'selected="selected"'}>${(category=='bug')*u'Critique'+(category=='feature')*u'Critique'}</option>
+           </select>
+    	</div>
+    </div>
+    <div class="ticket_description">Description</div>
+    <div class="ticket_description_content">
+        <textarea id="description" name="description">
+			% if description == '':
+Explicitez ici votre ${(category=='bug')*u'rapport de bug'+(category=='feature')*u'demande de fonctionnalité'}.
+			% else:
+${description}
+			% endif
+		</textarea>
+    </div>
+    
+    <div class="add_files">
+       <div class="add_files_title">Fichiers joints</div>
+        % for file in files:
+        <div class="file">
+            <div class="file_message" id="deleting"><img src="/pix/loading_wheel.gif" alt="loading wheel" /> Fichier en cours de suppression, merci de patienter.</div>
+            <div class="file_message" id="deleting_error">Le fichier n'a pas pu être supprimé.</div>
+            <div class="file_message" id="deleting_success">Le fichier a bien été supprimé.</div>
+            <div class="file_data">
+                <span class="remove_existing" id="${file['id']}"><img src="/pix/red_cross.png" alt="remove this file button" /></span>${file['name']}
+                <input type="hidden" name="hidden_file" id="${file['id']}" />
+            </div>
+        </div>
+        % endfor
+    </div>
+    <div><span id="add_file">cliquez ici</span> pour joindre un nouveau fichier.</div>
+    <div class="buttons">
+       <input type="submit" id="ok" value="OK"/>
+    </div>
+</form>
+
+
+<div class="loading">
+    Merci de patienter, votre ${(category=='bug')*u'rapport'+(category=='feature')*u'requête'} est en cours d'enregistrement.<br/>
+    <img src="/pix/loading_wheel.gif" alt="loading wheel" />
+</div>
+<div class="thanks">
+    Merci de votre participation.<br/>
+	Si vous n'êtes pas redirigé dans les 5 secondes, <a href="" id="redirecturl">cliquez ici</a>
+</div>
+<div class="error">
+    Une erreur est survenue !<br/>
+    <span id="tryagain">Cliquez ici</span> pour réessayer.
+</div>
+

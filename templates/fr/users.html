@@ -1,0 +1,150 @@
+## -*- coding: utf-8 -*-
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>Naphtaline: BUG Tracking made REALLY simple (and beautiful)</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+	<link rel="stylesheet" type="text/css" href="/css/layout-2col.css" />
+	<link rel="stylesheet" type="text/css" href="/css/header.css" />
+	<link rel="stylesheet" type="text/css" href="/css/first_col_elements.css" />
+	<link rel="stylesheet" type="text/css" href="/css/users.css" />
+
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script type="text/javascript" src="/js/jquery.pause.js"></script>
+	<script type="text/javascript" src="/js/users.js"></script>
+    
+    
+</head>
+
+<body>
+
+    <div class="misc">
+        <div id="projectWebName">${projectWebName}</div>
+		<div id="rejectMsg">Do you really want to reject this user's application?</div>
+		<div id="deleteMsg">Do you really want to delete this user?</div>
+    </div>
+    
+	<div class="header">
+		<div class="searchbox"><form class="search" action="/${projectWebName}/search" method="GET"><input type="text" name="search" value="rechercher"/></form></div>
+		<span class="project_name">Projet ${projectName} sur Naphtaline</span>
+	</div>
+
+	<div class="col1">
+		<img class="logo" src="/pix/logo.png" alt="naphtaline logo"/>
+		<div class="pages">
+			<a class="page" href="/${projectWebName}/bug">BUGS</a>
+			<a class="page" href="/${projectWebName}/feature">FONCTIONNALITES</a>
+			<a class="page_no_bottom_border" href="/${projectWebName}/search">RECHERCHE</a>
+			<a class="selected_page" href="/${projectWebName}/users">UTILISATEURS</a>
+			<a class="page" href="/${projectWebName}/profile">PROFIL</a>
+		</div>
+		<a class="disconnect" href="/${projectWebName}/disconnect">SE DECONNECTER</a>
+	</div>
+	
+	<div class="col2">
+	   
+	   <div class="section" id="requests">
+	       <div class="title">Demande de participation</div>
+	       % if len(requests) == 0:
+	       <div class="no_subscription">Aucun nouvel utilisateur ne cherche à rejoindre le projet.</div>
+	       % endif
+	       
+	       % for request in requests:
+	       <div class="subscription_request" id="${request['id']}">
+	           <div class="login">${request['login']}</div>
+	           <div class="action" id="accept"><img id="accept" src="/pix/accept.png" alt="accept"/></div>
+	           <div class="action" id="reject"><img id="reject" src="/pix/cancel.png" alt="reject"/></div>
+	           <div class="status" id="normal">
+	               <select name="status" id="status">
+	                   <option value="1" selected="selected">Normal</option>
+	                   <option value="2">Administrateur</option>
+	               </select>
+	           </div>
+	           <div class="email">${request['mail']}</div>
+	           
+	           <div class="loading"><img src="/pix/loading_wheel.gif" alt="loading" /></div>
+	           <div class="error">Une erreur est survenue. Réessayez plus tard, merci.</div>
+	           <div class="error_owner">Vous ne pouvez pas supprimer le créateur du projet.</div>
+	           <div class="delete_success">Cette demande d'inscription a été rejettée.</div>
+	           <div class="accept_success">Cet utilisateur fait maintenant parti du projet.</div>
+	           <div class="update_success">Le statut de l'utilisateur a été mis à jour.</div>
+	       </div>
+	       % endfor	       
+	   </div>
+	   
+	   <div class="section" id="users">
+	       <div class="title">Utilisateurs enregistrés</div>
+	       % for user in users:
+	       <div class="registered_user" id="${user['id']}">
+	           <div class="delete"><img src="/pix/delete.png" alt="delete" id="delete"/></div>
+	           <div class="login">${user['login']}</div>
+	           <div class="status">
+	               <select name="status" id="status">
+	                   <option value="1" ${(user['level'] == 1)*'selected="selected"'}>Normal</option>
+	                   <option value="2" ${(user['level'] == 2)*'selected="selected"'}>Administrateur</option>
+	               </select>
+	           </div>
+	           <div class="email">${user['mail']}</div>
+	           
+	           <div class="loading"><img src="/pix/loading_wheel.gif" alt="loading" /></div>
+	           <div class="error">Une erreur est survenue, merci de réessayer plus tard.</div>
+	           <div class="error_owner">Vous ne pouvez pas supprimer le créateur du projet.</div>
+	           <div class="delete_success">Cet utilisateur est maintenant supprimé.</div>
+	           <div class="update_success">Le statut de l'utilisateur a été mis à jour.</div>
+	       </div>
+	       % endfor	       
+	   </div>
+		
+		<div class="section" id="users">
+				% if len(deletedUsers) == 0:
+				<div class="no_subscription">Aucun utilisateur n'a encore vu son accès révoqué.</div>
+				% endif
+				<div class="title">Utilisateurs supprimés</div>
+				% for user in deletedUsers:
+				<div class="registered_user" id="${user['id']}">
+						<div class="login">${user['login']}</div>
+						<div class="email">${user['mail']}</div>
+				</div>
+				% endfor	       
+		</div>
+	
+	   
+	   <div class="section" id="invitations">
+	       <div class="title">Invitations</div>
+	       <div class="info">
+				Utilisez le formulaire ci dessous pour envoyer des invitation à joindre le projet.<br/>
+				Chaque adresse email doit être séparée des autres par un point virgule (;).<br/>
+				Notez bien que le message personnel est le même pour tous les destinataires de l'invitation.
+	       </div>
+	       
+	       <form class="invitations">
+	       <div class="to">
+    	       Destinataires:<br/>
+	          <textarea name="to"></textarea>
+	       </div>
+	       <div class="message">
+    	       Message personnel:<br/>
+	          <textarea name="message"></textarea>
+	       </div>
+	       <input type="submit" id="send" value="envoyer" />
+	       </form>
+	       
+	       <div class="loading">
+	           <img src="/pix/loading_wheel.gif" alt="loading wheel" /> <br />
+	           Invitations en cours d'envoi. Merci de patienter.
+	       </div>
+	       <div class="error">Une erreur est survenue. Merci de réessayer plus tard.</div>
+	       <div class="success">Les invitations ont été envoyées.</div>
+	       
+	   </div>
+	   
+
+	</div>
+	
+</body>
+
+</html>

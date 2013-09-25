@@ -1,0 +1,17 @@
+## -*- coding: utf-8 -*-
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+To: ${to}
+From: noreply@naphtaline.net
+Subject: Naphtaline.net : modification de votre statut
+
+Bonjour ${userName},
+
+votre compte utilisateur sur ${projectName} vient d'être modifié.
+Vous disposez maintenant des droits ${(int(level) == 2)*'administrateurs' + (int(level) != 2)*'normaux (non administrateurs)'}.
+
+Le projet est accessible à l'adresse http://projects.naphtaline.net/${projectWebName}
+
+--
+Jérémy
+Pour toute remarque, suggestion ou autre, vous pouvez me contacter à travers le blog (http://blog.naphtaline.net), via la page du projet (http://projects.naphtaline.net/naphtaline) ou encore par mail, à jeremy@naphtaline.net ou support@naphtaline.net

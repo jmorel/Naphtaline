@@ -1,0 +1,85 @@
+body {
+	background-color: #556165;
+	width: 500px;
+	font-family: Arial;
+	font-size : 12pt;
+	margin: auto;
+	margin-top: 50px;
+}
+
+div.logo {
+	color: #C9CECE;
+	height : 200px;
+}
+div.logo img {
+	width : 200px;
+	border: none;
+	float: left;
+}
+div.logo div {
+	margin-left : 230px;
+}
+div.name {
+	font-size: 30pt;
+	font-weight: bold;
+	padding-top : 30px;
+}
+div.subtitle {}
+
+div.form {
+	background-color: #FFFFFF;
+	border: 2px solid #92A68A;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	padding: 30px;
+	text-align: center;
+	margin: auto;
+	width: 300px;
+}
+
+div.title {
+	font-size : 14pt;
+	font-weight: bold;
+	color: #506266;
+	padding-bottom: 20px;
+}
+
+#login, #password {
+	font-size: 10pt;
+	border : none;
+	background-color: #AAAAAA;
+	padding: 5px;
+	color : #000000;
+	margin-top: 3px;
+}
+input.ok {
+	margin-top : 15px;
+	width : 50px;
+}
+div.links {
+    font-size: 10pt;
+}
+div.links a {
+    text-decoration: none;
+    color : #506266;
+}
+div.links a:hover {
+    text-decoration: underline;
+}
+div.loading, div.error, div.wrong {
+    text-align: center;
+    color: #506266;
+    display: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+span#retry {
+	cursor: pointer;
+}
+span#retry:hover {
+    text-decoration: underline;
+	cursor: pointer;
+}
+.misc {
+    display: none;
+}

@@ -1,0 +1,13 @@
+## -*- coding: utf-8 -*-
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+To: ${to}
+From: noreply@naphtaline.net
+Subject: Naphtaline.net : refus de la demande d'inscription
+
+Bonjour ${userName},
+
+votre demande d'inscription au projet ${projectName} a été refusée par un des administrateurs du projet.
+
+--
+Jérémy

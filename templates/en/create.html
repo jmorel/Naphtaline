@@ -1,0 +1,137 @@
+## -*- coding: utf-8 -*-
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>Naphtaline: BUG Tracking made REALLY simple (and beautiful)</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+	<link rel="stylesheet" type="text/css" href="/css/layout-3col.css" />
+	<link rel="stylesheet" type="text/css" href="/css/header.css" />
+	<link rel="stylesheet" type="text/css" href="/css/first_col_elements.css" />
+	<link rel="stylesheet" type="text/css" href="/css/filters_legend_box.css" />
+	<link rel="stylesheet" type="text/css" href="/css/tickets_list.css" />
+	<link rel="stylesheet" type="text/css" href="/css/ticket.css" />
+	<link rel="stylesheet" type="text/css" href="/css/comments.css" />
+	<link rel="stylesheet" type="text/css" href="/css/generic.css" />
+	<link rel="stylesheet" type="text/css" href="/css/create.css" />
+
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script type="text/javascript" src="/js/jquery.pause.js"></script>
+	<script type="text/javascript" src="/js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="/js/ajaxupload.2.3.js"></script>
+	<script type="text/javascript" src="/js/filters.js"></script>
+	<script type="text/javascript" src="/js/tickets_list.js"></script>
+	<script type="text/javascript" src="/js/ticket_form.js"></script>
+</head>
+
+
+
+<body>
+    
+    <div class="misc">
+        <div id="projectWebName">${projectWebName}</div>
+        <div id="category">${category}</div>
+    </div>
+    
+	<div class="header">
+		<div class="searchbox">
+    		<form class="searchbox" method="GET" action="/${projectWebName}/search">
+    		  <input type="text" name="search" value="search"/>
+    		</form>
+		</div>
+		<span class="project_name">${projectName} project on Naphtaline</span>
+	</div>
+
+	<div class="col1">
+		<img class="logo" src="/pix/logo.png" alt="naphtaline logo"/>
+		<div class="pages">
+			<a class="${(category == 'bug')*'selected_page'+(category != 'bug')*'page_no_bottom_border'}" href="/${projectWebName}/bug/new">DEFECTS</a>
+			<a class="${(category == 'feature')*'selected_page'+(category != 'feature')*'page'}" href="/${projectWebName}/feature/new">FEATURES</a>
+			<a class="page" href="/${projectWebName}/search">SEARCH</a>
+			% if int(userLevel) == 2:
+			<a class="page" href="/${projectWebName}/users">USERS</a>
+			% endif
+			<a class="page" href="/${projectWebName}/profile">PROFILE</a>
+		</div>
+		<a class="disconnect" href="/${projectWebName}/disconnect">DISCONNECT</a>
+	</div>
+	
+	<div class="col2">
+	
+
+			<div class="tabs">
+				<div class="selected_tab" id="legend_tab">Legend</div>
+				<!--<div class="tab" id="filters_tab">Filters</div>-->
+				<span class="toggle_content" id="show_button">Show</span>
+				<span class="toggle_content" id="hide_button">Hide</span>
+			</div>
+			
+			<div class="content">
+				<div id="legend_content">
+					${u'Severity' if category=='bug' else u'Urgency'}: 
+						<img src="/pix/red_square.png" alt="carré rouge" /> Critical
+						<img src="/pix/orange_square.png" alt="carré rouge" /> ${u'Serious' if category=='bug' else u'Strong'}
+						<img src="/pix/yellow_square.png" alt="carré rouge" /> ${u'Light' if category=='bug' else u'Weak'}
+					<br/>
+					Status:
+						<img src="/pix/green_square.png" alt="carré rouge" /> ${u'Corrected' if category=='bug' else u'Implemented'} 
+						<img src="/pix/grey_square.png" alt="carré rouge" /> Being taken care of
+						<img src="/pix/white_square.png" alt="carré rouge" /> Unknown
+						% if category == 'feature':
+						<img src="/pix/crossed_square.png" alt="carré rouge" /> Rejected
+						% endif
+				</div>
+				<!--
+				<div id="filters_content">
+					<div class="filters_buttons">
+						Filter on severity : 
+							<span class="selected_filter_option" id="filter_severity_critical">critical</span>
+							<span class="selected_filter_option" id="filter_severity_serious">serious</span> 
+							<span class="selected_filter_option" id="filter_severity_light">light</span>
+						<br/>
+						Filter on status :
+							<span class="selected_filter_option" id="filter_status_corrected">corrected</span>
+							<span class="selected_filter_option" id="filter_status_beingtakencareof">being taken care of</span> 
+							<span class="selected_filter_option" id="filter_status_unknown">unknown</span>
+					</div>
+				</div>
+				-->
+			</div>
+	
+	
+		<div class="selected_report"><a href="/${projectWebName}/${category}/new">${(category=='bug')*'Report a defect'+(category=='feature')*'Request a feature'}</a></div>	
+		
+		<div class="tickets_tabs">
+			<div class="selected_tab" id="bugs_tab">${u'Defects' if category == 'bug' else u'Features'}</div>
+			<div class="tab" id="corrected_bugs_tab">${u'Corrected Defects' if category == 'bug' else u'Implemented/Rejected Features'}</div>
+		</div>
+		<div class="tickets">		
+    		<!--<div class="infos">Bold defects are the ones containing updates since your last visit.</div>-->
+    		<div class="tickets_list_message" id="tickets_loading"><img src="/pix/loading_wheel.gif" alt="loading wheel" /></div>
+    		<div class="tickets_list_message" id="tickets_loading_error">An error occured while loading tickets. <span id="retry_loading_tickets">Click here</span> to retry.</div>
+    		<div class="dummy"></div>
+    		<div class="tickets_list" id="tickets_list">
+    			${ticketsList}
+    		</div>
+		</div>
+
+	</div>
+	
+	<div class="col3">
+		
+		
+	
+		<div class="ticket">
+			<div class="ticket_type_id">New ${(category=='bug')*'defect'+(category=='feature')*'feature'}</div>
+                ${ticketForm}
+        </div>
+           
+				
+	</div>
+	
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+div.section {
+    background-color: #FFFFFF;
+    padding:30px;
+    margin:15px;
+}
+
+div.title {
+	color : #506266;
+	font-size : 18pt;
+	padding-bottom: 10px;
+}
+
+div.infos {
+    padding-bottom: 20px;
+}
+
+form.search_form #search_input {
+    font-size: 10pt;
+	border : none;
+	background-color: #AAAAAA;
+	padding: 5px;
+	color : #000000;
+	margin-top: 3px;
+	width: 400px;
+}
+
+span.search {
+    font-style: italic;
+}
+
+div.ticket {
+    margin-top: 20px;
+    padding: 10px;
+}
+div.ticket:hover {
+    background-color: #F1F1F1;
+}
+
+a.ticket_title {
+    display: block;
+    color: #506266;
+}
+span.category_id {
+    font-size: 12pt;
+}
+
+span.ticket_severity {
+    padding-top: 4px;
+    float: right;
+    width: 15px;
+    text-align: center;
+}
+span.ticket_status {
+    padding-top: 4px;
+    float: right;
+    width: 15px;
+    text-align: center;
+    margin-left: 20px;
+}

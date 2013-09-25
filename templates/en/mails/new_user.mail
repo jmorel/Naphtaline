@@ -1,0 +1,14 @@
+## -*- coding: utf-8 -*-
+To: ${to}
+From: noreply@naphtaline.net
+Subject: Naphtaline.net : un nouvel utilisateur s'est inscrit
+Content-type: text/plain
+
+Hello ${userName},
+
+A new user asks to enter the ${projectName} project. You can accept or decline his request on the project page (http://projects.naphtaline.net/${projectWebName}), section 'users'.
+
+
+--
+Jérémy
+For any suggestion, remark  or feedback, please contact me through the blog (http://blog.naphtaline.net ), via the Naphtaline project webpage (http://projects.naphtaline.net/naphtaline ) or though mail at jeremy@naphtaline.net or support@naphtaline.net

@@ -1,0 +1,15 @@
+## -*- coding: utf-8 -*-
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+To: ${to}
+From: noreply@naphtaline.net
+Subject: Naphtaline.net : acceptation de votre compte
+
+Bonjour ${userName},
+
+votre demande d'inscription au projet ${projectName} a été validée par l'administrateur du projet.
+Vous pouvez maintenant vous connecter à l'adresse http://projects.naphtaline.net/${projectWebName} en utilisant le login et le mot de passe qui vous ont été fournis.
+
+--
+Jérémy
+Pour toute remarque, suggestion ou autre, vous pouvez me contacter à travers le blog (http://blog.naphtaline.net), via la page du projet (http://projects.naphtaline.net/naphtaline) ou encore par mail, à jeremy@naphtaline.net ou support@naphtaline.net

@@ -1,0 +1,70 @@
+## -*- coding: utf-8 -*-
+
+<%
+    n = 0
+    
+    def processDate(day, month, year) :
+        #days = ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th','11th', '12th', '13th', '14th', '15th', '16th', '17th', '18th', '19th', '20th', '21st', '22nd', '23rd','24th']
+        if day == 1 : str_day = '1st'
+        elif day == 2 : str_day = '2nd'
+        elif day == 3 : str_day = '3rd'
+        elif day == 21 : str_day = '21st'
+        elif day == 22 : str_day = '22nd'
+        elif day == 23 : str_day = '23rd'
+        elif day == 31 : str_day = '31st'
+        else : str_day = str(day)+'th'
+        months = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
+        return 'on '+ months[month-1] + ' ' + str_day + ', ' + str(year)
+%>
+
+<div class="comments_title">Discussion</div>
+
+% if len(comments) == 0:
+    <div class="no_new_comment">This defect did not provoke any reaction yet.</div>
+% else:
+% for comment in comments:
+    <% 
+        n = n + 1
+    %>
+<div class="comment">
+	<div class="comment_id">#${n} - ${comment['author']} <span class="comment_date">${processDate(comment['date']['day'], comment['date']['month'], comment['date']['year'])}</span></div>
+	<div class="comment_content">
+    	% if len(comment['files']) > 0:
+    	<div class="comment_files">
+    		<div class="comment_files_title">Attached files:</div>
+    		<ul>
+    		    % for file in comment['files']:
+    			<li><a href="/${projectWebName}/file/${file['id']}">${file['name']}</a></li>
+    			% endfor
+    		</ul>
+    	</div>
+    	% endif
+		${comment['content']}
+	</div>
+</div>
+% endfor
+% endif
+
+<div class="comments_loading">
+    <img src="/pix/loading_wheel.gif" alt="loading wheel" /><br/>
+    Please wait while we refresh the comments list.
+</div>
+<div class="comments_error">A error occured while trying to load comments. <span id="reload_comments">Click here</span> to try reloading.</div>
+
+
+<div class="add_comment">
+	<div class="add_comment_title">Add your comment</div>
+	<div class="comment_loading">
+	   <img src="/pix/loading_wheel.gif" alt="loading wheel" /><br/>
+	   Please wait while we add your comment.
+    </div>
+    <div class="comment_error">An error occured while adding your comment. Please retry later.</div>
+    <div class="comment_thanks">Thanks for your participation.</div>
+	
+	<form id="form_comment" method="post" action="" enctype="multipart/form-data">
+		<textarea name="content" id="content"></textarea><br/>
+		<div class="add_comment_files"></div>
+        <span id="add_comment_add_file">Click here to attach a new file.</span>
+		<input class="add_comment_ok" type="button" value="OK" />
+	</form>
+</div>

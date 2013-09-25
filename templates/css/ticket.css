@@ -1,0 +1,89 @@
+div.ticket {
+	background : #FFFFFF;
+	padding : 20px;
+}
+div.ticket_type_id {
+	padding : 0px;
+	color : #506266;
+	font-size : 18pt;
+}
+div.ticket_title {
+	font-size : 14pt;
+	color : #7B8F8A;
+}
+#ticket_author {
+	font-size : 10pt;
+}
+div.edit_delete {
+	text-align : right;
+	float : right;
+	width : 100px;
+	font-size : 10pt;
+	font-weight : normal;
+	margin-right : 15px;
+	margin-top : 10px;
+	color : #92A68A;
+}
+#edit_button, #delete_button {
+	color : #92A68A;
+	cursor : pointer;
+}
+#edit_button:hover, #delete_button:hover {
+	color : #506266;
+	text-decoration : none;
+}
+
+
+div.ticket_status {
+	margin-top : 15px; 
+	height : 20px;
+}
+div.ticket_severity { height : 20px;}
+div.field {
+	float : left;
+	width : 70px;
+	color : #7B8F8A;
+	font-size : 12pt;
+}
+div.value {
+	margin-left : 100px;
+}
+div.ticket_description { 
+	padding-top : 10px;
+	height : 20px;
+	color : #7B8F8A;
+	font-size : 12pt;
+}
+div.ticket_description_content {}
+div.ticket_files {	
+	float : right; 
+	margin-left : 15px;
+	margin-bottom : 10px;
+	padding : 15px;
+	min-width : 150px;
+
+}
+div.ticket_files_title {
+	font-size : 12pt;
+	color : #7B8F8A;
+}
+div.ticket_files ul { 
+	list-style-type : square; 
+	color : #7B8F8A; 
+	margin : 0px;
+	padding-left : 30px;
+}
+div.ticket_files a { color : #92a68a; text-decoration : none;}
+div.ticket_files a:hover { color : #506266; text-decoration : none;}
+
+div.bottom_ticket {
+    clear: right;
+}
+
+div.delete_loading, div.delete_error, div.delete_success, div.edit_loading {
+    display: none;
+    text-align: center;
+    padding: 30px;
+    font-size: 12pt;
+    color: #506266;
+}

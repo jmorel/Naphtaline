@@ -1,0 +1,48 @@
+## -*- coding: utf-8 -*-
+
+<%
+    severityCaption = {
+        'bug': ['dummy', 'light', 'serious', 'critical'],
+        'feature': ['dummy', 'weak', 'strong', 'critical']
+    }
+    severityPicture = {
+        'bug': ['dummy', 'yellow_square.png', 'orange_square.png', 'red_square.png'],
+        'feature': ['dummy', 'yellow_square.png', 'orange_square.png', 'red_square.png']
+    }
+    statusCaption= {
+        'bug': ['dummy', 'corrected', 'being taken care of', 'unknown'],
+        'feature': ['dummy', 'implemented', 'being taken care of', 'unknown', 'rejected']
+    }
+    statusPicture= {
+        'bug': ['dummy', 'green_square.png', 'grey_square.png', 'white_square.png'],
+        'feature': ['dummy', 'green_square.png', 'grey_square.png', 'white_square.png', 'crossed_square.png']
+    }
+    
+%>
+% if tickets == []:
+    <div class="no_tickets">Il n'y a pas de tickets dans cette catégorie.</div>
+% else:
+<div class="sort_controllers">
+	<div class="ticket_id_list"><img src="/pix/${(sortMode=='idUp')*'triangle_up'+(sortMode!='idUp')*'triangle_down'}.png" alt="${(sortMode=='idUp')*'triangle up'+(sortMode!='idUp')*'triangle down'}"/></div>
+	<div class="ticket_severity_list"><img src="/pix/${(sortMode=='severityUp')*'triangle_up'+(sortMode!='severityUp')*'triangle_down'}.png" alt="${(sortMode=='severityUp')*'triangle up'+(sortMode!='severityUp')*'triangle down'}"/></div>
+	<div class="ticket_status_list"><img src="/pix/${(sortMode=='statusUp')*'triangle_up'+(sortMode!='statusUp')*'triangle_down'}.png" alt="${(sortMode=='statusUp')*'triangle up'+(sortMode!='statusUp')*'triangle down'}"/></div>
+	<div class="ticket_title_list"><img src="/pix/${(sortMode=='lastModUp')*'triangle_up'+(sortMode!='lastModUp')*'triangle_down'}.png" alt="${(sortMode=='lastModUp')*'triangle up'+(sortMode!='lastModUp')*'triangle down'}"/></div>
+</div>
+% for ticket in tickets:
+<%  
+		ticket['severity'] = int(ticket['severity'])
+		ticket['status'] = int(ticket['status'])
+		ticketClass = 'ticket'
+		if int(selectedTicketRelativeID) == int(ticket['relativeID']):
+				ticketClass = 'selected_ticket'
+		elif int(ticket['relativeID']) in unread:
+				ticketClass='updated_ticket'
+%>
+<a class="${ticketClass}" href="/${projectWebName}/${category}/${ticket['relativeID']}">
+	<span class="ticket_id_list">#${ticket['relativeID']}</span>
+	<span class="ticket_severity_list"><img src="/pix/${severityPicture[category][ticket['severity']]}" alt="${severityCaption[category][ticket['severity']]}" /></span>
+	<span class="ticket_status_list"><img src="/pix/${statusPicture[category][ticket['status']]}" alt="${statusCaption[category][ticket['status']]}" /></span>
+	<span class="ticket_title_list">${ticket['name']}</span>
+</a>
+% endfor
+% endif

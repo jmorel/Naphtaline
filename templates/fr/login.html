@@ -1,0 +1,62 @@
+## -*- coding: utf-8 -*-
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>Naphtaline: BUG Tracking made REALLY simple (and beautiful)</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+	<link rel="stylesheet" type="text/css" href="/css/login.css" />
+
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script type="text/javascript" src="/js/login.js"></script>
+	
+</head>
+
+
+<body>
+    
+    <div class="misc">
+        <div id="projectWebName">${projectWebName}</div>
+		<div id="comingFrom">${comingFrom}</div>
+    </div>
+
+	<div class="logo">
+		<img class="logo" src="/pix/logo.png" alt="naphtaline logo">
+		<div class="name">Naphtaline</div>
+		<div class="subtitle">Bug tracking made really simple</div>
+	</div>
+	
+    <div class="form">
+        <div class="title">Login pour le projet ${projectName}</div>
+        
+        <div class="wrong">
+    	   Erreur de login et/ou de mot de passe.
+    	</div>
+        
+		<form>
+			<input type="text" name="login" id="login" value="${login}"/><br/>
+			<input type="password" name="password" id="password" value="${password}"/><br/>
+			<input type="submit" value="OK" class="ok" /><br/>
+		</form>
+		
+		<div class="loading">
+    	   <img src="/pix/loading_wheel.gif" alt="loading wheel"/><br/>
+		   Merci de patienter pendant la vérification de votre login.
+    	</div>
+    	<div class="error">
+    	   Une erreur s'est produite: <span id="retry">cliquez ici</span> pour réessayer.
+    	</div>
+		
+		<div class="links">
+			<a href="/${projectWebName}/lostPassword">Mot de passe oublié ?</a><br/>
+			<a href="/${projectWebName}/register">Vous voulez participer à ce projet ?</a>
+		</div>
+	</div>
+	
+
+</body>
+
+</html>

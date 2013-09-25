@@ -1,0 +1,104 @@
+## -*- coding: utf-8 -*-
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>Naphtaline: BUG Tracking made REALLY simple (and beautiful)</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+	<link rel="stylesheet" type="text/css" href="/css/layout-2col.css" />
+	<link rel="stylesheet" type="text/css" href="/css/header.css" />
+	<link rel="stylesheet" type="text/css" href="/css/first_col_elements.css" />
+	<link rel="stylesheet" type="text/css" href="/css/search.css" />
+
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script type="text/javascript" src="/js/jquery.pause.js"></script>
+    
+    
+</head>
+
+<%
+    category = ['dummy', 'defect', 'feature']
+    
+    severityCaption = [ 'dummy',
+                        ['dummy', 'light', 'serious', 'critical'],
+                        ['dummy', 'weak', 'strong', 'critical'] ]
+    severityPicture = [ 'dummy',
+                        ['dummy', 'yellow_square.png', 'orange_square.png', 'red_square.png'],
+                        ['dummy', 'yellow_square.png', 'orange_square.png', 'red_square.png'] ]
+    statusCaption = [   'dummy',
+                        ['dummy', 'corrected', 'being taken care of', 'unknown'],
+                        ['dummy', 'implemented', 'being taken care of', 'unknown', 'rejected'] ]
+    statusPicture = [   'dummy',
+                        ['dummy', 'green_square.png', 'grey_square.png', 'white_square.png'],
+                        ['dummy', 'green_square.png', 'grey_square.png', 'white_square.png', 'crossed_square.png'] ]
+
+    
+%>
+
+<body>
+
+    <div class="misc">
+        <div id="projectWebName">${projectWebName}</div>
+    </div>
+    
+	<div class="header">
+		<div class="searchbox"><form class="search" action="/${projectWebName}/search" method="GET"><input type="text" name="search" value="rechercher"/></form></div>
+		<span class="project_name">Projet ${projectName} sur Naphtaline</span>
+	</div>
+
+	<div class="col1">
+		<img class="logo" src="/pix/logo.png" alt="naphtaline logo"/>
+		<div class="pages">
+			<a class="page" href="/${projectWebName}/bug">BUGS</a>
+			<a class="page_no_bottom_border" href="/${projectWebName}/feature">FONCTIONNALITES</a>
+			<a class="selected_page" href="/${projectWebName}/search">RECHERCHE</a>
+			% if int(userLevel) == 2:
+			<a class="page" href="/${projectWebName}/users">UTILISATEURS</a>
+			% endif
+			<a class="page" href="/${projectWebName}/profile">PROFIL</a>
+		</div>
+		<a class="disconnect" href="/${projectWebName}/disconnect">SE DECONNECTER</a>
+	</div>
+	
+	<div class="col2">
+	   
+	   <div class="section">
+	       <div class="title">Recherche</div>
+	       Vous pouvez utiliser ce formulaire pour faire une recherche dans les tickets, leur commentaires et les noms des pièces jointes.
+	       <form class="search_form" method="GET" action="/${projectWebName}/search">
+	           <input type="text" id="search_input" name="search" value="${search}"/>
+	           <input type="submit" id="search_button" value="Rechercher !"/>
+	       </form>	   
+	   </div>
+	   
+	   <div class="section">
+	       <div class="title">Résultats de la recherche</div>
+	       % if search is '':
+	           <div class="info">Utilisez le formulaire ci dessus pour effectuer une recherche.</div>
+	       % else:
+	           % if len(tickets) == 0:
+	               <div class="info">La recherche <span class="search">${search}</span> n'a donné aucun résultat.</div>
+	           % else:
+	               <div class="info">Les résultats sont classés par pertinence décroissante.</div>
+	               % for ticket in tickets:
+	                   <div class="ticket">
+	                       <a class="ticket_title" href="/${projectWebName}/${(ticket['category']==1)*'bug'+(ticket['category']==2)*'feature'}/${str(ticket['relativeID'])}">
+	                           <span class="category_id">${category[ticket['category']].capitalize()} #${str(ticket['relativeID'])}:</span>	                           <span class="ticket_severity"><img src="/pix/${severityPicture[ticket['category']][ticket['severity']]}" alt="${severityCaption[ticket['category']][ticket['severity']]}" /></span>
+	                           <span class="ticket_status"><img src="/pix/${statusPicture[ticket['category']][ticket['status']]}" alt="${statusCaption[ticket['category']][ticket['status']]}" /></span>
+	                            ${ticket['name']}
+	                       </a>
+	                       ${ticket['headline']} <br/>
+	                   </div>
+	               % endfor
+	           % endif
+	       % endif   
+	   </div>
+
+	</div>
+	
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+## -*- coding: utf-8 -*-
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+To: ${to}
+From: noreply@naphtaline.net
+Subject: Naphtaline.net : suppression de votre compte
+
+Bonjour ${userName},
+
+votre accès au projet ${projectName} vient d'être révoqué par un des administrateurs du projet.
+
+--
+Jérémy

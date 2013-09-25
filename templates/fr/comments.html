@@ -1,0 +1,63 @@
+## -*- coding: utf-8 -*-
+
+<%
+    n = 0
+    
+    def processDate(day, month, year) :
+        days = map(str, range(1,32))
+        days[0] = '1er'
+        months = [u'janvier', u'février', u'mars', u'avril', u'mai', u'juin', u'juillet', u'août', u'septembre', u'octobre', u'novembre', u'décembre']
+        return days[day-1] + ' ' + months[month-1] + ' ' +str(year)
+%>
+
+<div class="comments_title">Discussion</div>
+
+% if len(comments) == 0:
+    <div class="no_new_comment">Personne n'a encore posté de commentaire.</div>
+% else:
+% for comment in comments:
+    <% 
+        n = n + 1
+    %>
+<div class="comment">
+	<div class="comment_id">#${n} - ${comment['author']} <span class="comment_date">${processDate(comment['date']['day'], comment['date']['month'], comment['date']['year'])}</span></div>
+	<div class="comment_content">
+    	% if len(comment['files']) > 0:
+    	<div class="comment_files">
+    		<div class="comment_files_title">Fichiers joints :</div>
+    		<ul>
+    		    % for file in comment['files']:
+    			<li><a href="/${projectWebName}/file/${file['id']}">${file['name']}</a></li>
+    			% endfor
+    		</ul>
+    	</div>
+    	% endif
+		${comment['content']}
+	</div>
+</div>
+% endfor
+% endif
+
+<div class="comments_loading">
+    <img src="/pix/loading_wheel.gif" alt="loading wheel" /><br/>
+    Merci de patienter pendant le rafraichissement de la liste des commentaires.
+</div>
+<div class="comments_error">Une erreur est survenue pendant la tentative d'obtention de la liste de commentaire. <span id="reload_comments">Cliquez ici</span> pour relancer le chargement.</div>
+
+
+<div class="add_comment">
+	<div class="add_comment_title">Votre commentaire</div>
+	<div class="comment_loading">
+	   <img src="/pix/loading_wheel.gif" alt="loading wheel" /><br/>
+	   Merci de patienter pendant l'ajout de votre commentaire.
+    </div>
+    <div class="comment_error">Une erreur est survenue lors de l'enregistrement de votre commentaire. Merci de réessayer plus tard.</div>
+    <div class="comment_thanks">Merci de votre participation.</div>
+	
+	<form id="form_comment" method="post" action="" enctype="multipart/form-data">
+		<textarea name="content" id="content"></textarea><br/>
+		<div class="add_comment_files"></div>
+        <span id="add_comment_add_file">Cliquez ici pour joindre un fichier.</span>
+		<input class="add_comment_ok" type="button" value="OK" />
+	</form>
+</div>

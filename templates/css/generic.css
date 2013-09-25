@@ -1,0 +1,35 @@
+div.report, div.selected_report {
+	text-align : right;
+	margin : 30px;
+	margin-right: 0px;
+}
+
+div.report a {
+	font-size : 12pt;
+	font-weight : bold;
+	text-decoration : none;
+	color : #92A68A;
+	padding : 10px;
+	padding-right: 20px;
+}
+div.report a:hover {
+	color : #506266;
+}
+
+div.selected_report a {
+	display : inline;
+	text-decoration : none;
+	color : #506266;
+	background-color : #f1f1f1;
+	border : 2px solid #92A68A;
+	border-right : none;
+	-webkit-border-top-left-radius : 5px;
+	-webkit-border-bottom-left-radius : 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	font-weight: bold;
+	font-size : 12pt;
+	padding : 8px;
+	padding-right: 15px;
+	padding-left: 15px;
+}

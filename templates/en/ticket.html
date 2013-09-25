@@ -1,0 +1,89 @@
+## -*- coding: utf-8 -*-
+
+<%
+    severityCaption = {
+        'bug': ['dummy', 'light', 'serious', 'critical'],
+        'feature': ['dummy', 'weak', 'strong', 'critical']
+    }
+    severityPicture = {
+        'bug': ['dummy', 'yellow_square.png', 'orange_square.png', 'red_square.png'],
+        'feature': ['dummy', 'yellow_square.png', 'orange_square.png', 'red_square.png']
+    }
+    statusCaption= {
+        'bug': ['dummy', 'corrected', 'being taken care of', 'unknown'],
+        'feature': ['dummy', 'implemented', 'being taken care of', 'unknown', 'rejected']
+    }
+    statusPicture= {
+        'bug': ['dummy', 'green_square.png', 'grey_square.png', 'white_square.png'],
+        'feature': ['dummy', 'green_square.png', 'grey_square.png', 'white_square.png', 'crossed_square.png']
+    }
+    
+    def processDate(day, month, year) :
+        #days = ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th', '9th', '10th','11th', '12th', '13th', '14th', '15th', '16th', '17th', '18th', '19th', '20th', '21st', '22nd', '23rd','24th']
+        if day == 1 : str_day = '1st'
+        elif day == 2 : str_day = '2nd'
+        elif day == 3 : str_day = '3rd'
+        elif day == 21 : str_day = '21st'
+        elif day == 22 : str_day = '22nd'
+        elif day == 23 : str_day = '23rd'
+        elif day == 31 : str_day = '31st'
+        else : str_day = str(day)+'th'
+        months = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
+        return months[month-1] + ' ' + str_day + ', ' + str(year)
+%>
+
+% if ticket['creatorID'] == userID or userLevel == 2:
+<div class="edit_delete">
+    <span id="edit_button">edit</span> | <span id="delete_button">delete</span>
+</div>
+% endif
+
+<div class="ticket_type_id">
+    ${(category=='bug')*'Defect'+(category=='feature')*'Feature'} #${ticket['id']}
+    <span id="ticket_author">submitted by ${ticket['creator'].decode('utf-8')} on ${processDate(ticket['creationDate']['day'], ticket['creationDate']['month'], ticket['creationDate']['year'])}</span>
+</div>
+
+<div class="ticket_title">${ticket['name']}</div>
+
+<div class="ticket_status">
+    <div class="field">Status</div>
+	<div class="value">${statusCaption[category][ticket['status']].capitalize()} (<img src="/pix/${statusPicture[category][ticket['status']]}" alt="${statusCaption[category][ticket['status']]}" />)</div>
+</div>
+<div class="ticket_severity">
+	<div class="field">Severity</div>
+	<div class="value">${severityCaption[category][ticket['severity']].capitalize()} (<img src="/pix/${severityPicture[category][ticket['severity']]}" alt="${severityCaption[category][ticket['severity']]}" />)</div>
+</div>
+<div class="ticket_description">Description</div>
+<div class="ticket_description_content">
+    % if len(ticket['files']) > 0:
+	<div class="ticket_files">
+		<div class="ticket_files_title">Attached files:</div>
+		<ul>
+		    % for file in ticket['files']:
+			<li><a href="/${projectWebName}/file/${file['id']}">${file['name']}</a></li>
+			% endfor
+		</ul>
+	</div>
+	% endif
+
+	${ticket['description']}
+</div>
+
+<div class="delete_loading">
+    <img src="/pix/loading_wheel.gif" alt="loading wheel"/> <br/>
+    Please wait while we delete the ticket.
+</div>
+<div class="delete_error">An error occured: could not delete ticket.</div>
+<div class="delete_success">
+    This ticket is now deleted.<br/>
+    If you're not redirected within 5 seconds, <a href="/${projectWebName}/${category}">click here</a>.
+</div>
+
+<div class="edit_loading">
+    <img src="/pix/loading_wheel.gif" alt="loading wheel"/> <br/>
+    Please wait while the formular is loading.
+</div>
+
+<div class="misc">
+    <div id="deleteMsg">Are you sure you want to delete this ${(category=='bug')*'defect'+(category=='feature')*'feature'}?</div>
+</div>

@@ -1,0 +1,16 @@
+## -*- coding: utf-8 -*-
+To: ${to}
+From: noreply@naphtaline.net
+Subject: Naphtaline.net : your request
+Content-type: text/plain
+
+Hello ${userName},
+
+Your subscription request at ${projectName} is effective. A mail has been sent to all administrators. You'll receive another mail when your request will have been processed.
+
+If your request is accepted, you'll be able to log in to the project at the adress http://projects.naphtaline.net/${projectWebName} using '${userName}' as login and '${password}' as password.
+
+
+--
+Jérémy
+For any suggestion, remark  or feedback, please contact me through the blog (http://blog.naphtaline.net ), via the Naphtaline project webpage (http://projects.naphtaline.net/naphtaline ) or though mail at jeremy@naphtaline.net or support@naphtaline.net

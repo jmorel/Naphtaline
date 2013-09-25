@@ -1,0 +1,18 @@
+span.project_name {
+	font-size: 12pt;
+	font-weight: bold;
+	color : #F1F1F1;
+}
+
+div.searchbox {
+	float : right;
+	width : 150px;
+	
+}
+
+div.searchbox input {
+	border : none;
+	background : #FFFFFF;
+	color : #999999;
+	
+}

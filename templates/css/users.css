@@ -1,0 +1,122 @@
+div.section {
+    background-color: #FFFFFF;
+    padding:30px;
+    margin:15px;
+}
+
+div.title {
+	color : #506266;
+	font-size : 18pt;
+	padding-bottom: 10px;
+}
+
+div.no_subscription {
+    text-align: center;
+    color: #506266;
+}
+
+div.subscription_request {
+    min-height: 22px;
+}
+div.subscription_request:hover {
+    background-color: #F1F1F1;
+}
+div.subscription_request div.login, div.subscription_request div.email, div.subscription_request, div.action {
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+div.subscription_request div.login {
+    float: left;
+    width: 200px;
+}
+div.subscription_request div.email {
+    margin-left: 200px;
+    width: 410px;
+}
+div.subscription_request div.status {
+    float: right;
+    width: 120px;
+    text-align: center;
+}
+div.subscription_request div.action {
+    float: right;
+    text-align: center;
+    width: 20px;
+}
+div.subscription_request div.action img{
+    cursor: pointer;
+}
+
+div.registered_user {min-height: 22px;}
+div.registered_user:hover {background-color: #F1F1F1;}
+
+div.registered_user div.login, div.registered_user div.delete, div.registered_user div.email {
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+div.registered_user div.login {
+    float: left;
+    width: 200px;
+}
+div.registered_user div.status {
+    float: right;
+    text-align: center;
+    width: 120px;
+}
+div.registered_user div.delete {
+    float: right;
+    text-align: center;
+    width: 20px;
+}
+div.registered_user div.delete img {
+    cursor: pointer;
+}
+div.registered_user div.email {
+    margin-left: 200px;
+}
+
+form {
+    padding-top: 10px;
+    text-align: center;
+}
+div.to {
+    text-align: left;
+    width: 300px;
+    float: left;
+}
+div.to textarea {
+    width: 100%;
+    height: 50px;
+}
+div.message {
+    text-align: left;
+    width: 470px;
+    margin-left: 310px;
+}
+div.message textarea {
+    width: 100%;
+    height: 100px;
+}
+input#send {
+    margin-top : 15px;
+}
+
+div.loading, div.error, div.error_owner, div.delete_success, div.accept_success, div.update_success {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    text-align: center;
+    display: none;
+}
+
+div.loading img {
+    height: 20px;
+}
+
+#invitations div.loading, #invitations div.error, #invitations div.success {
+    padding: 15px;
+    text-align: center;
+    font-size: 12pt;
+    color: #506266;
+    display: none;
+}

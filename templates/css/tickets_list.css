@@ -1,0 +1,182 @@
+div.col2 div.tickets_tabs {
+	height : 26px;
+	padding-left : 10px;
+	margin : 15px;
+	margin-bottom : 0px;
+}
+div.tickets_tabs div {
+	float : left;
+	height : 20px;
+	font-weight : bold;
+	margin-top : 3px;
+	margin-right : 1px;
+	padding-top : 3px;
+	padding-left : 10px;
+	padding-right : 10px;
+	font-size : 10pt;
+	cursor : pointer;
+}
+div.tickets_tabs .tab {
+	color : #92a68a;
+}
+div.tickets_tabs .tab:hover {
+	color : #506266;
+}
+div.tickets_tabs .selected_tab {
+	color : #FFFFFF;
+	background-color : #506266;
+	border : 2px solid #92A68A;
+	border-bottom : none;
+	-webkit-border-top-left-radius : 5px;
+	-webkit-border-top-right-radius : 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	height : 20px;
+}
+
+div.tickets {
+	color : #92A68A;
+	margin-left : 15px;
+	margin-right : 15px;
+	padding-bottom : 15px;
+	padding-top : 15px;
+	border : 2px solid #92A68A;
+	background-color : #FFFFFF;
+}
+
+div.no_tickets {
+    text-align: center;
+    padding: 30px;
+}
+
+div.tickets_list {
+    margin: 0px;
+    padding: 0px;
+}
+
+div.sort_controllers {
+	display : block;
+	height : 13px;
+	color : #000000;
+	text-decoration : none;
+	padding : 0px;
+	padding-right : 5px;
+	margin : 0px;
+	margin-left : 10px;
+	margin-right : 10px;
+}
+div.sort_controllers div {
+	text-align : center;
+}
+div.sort_controllers img {
+	margin:auto;
+}
+
+a.ticket {
+	display : block;
+	color : #000000;
+	text-decoration : none;
+	padding : 0px;
+	padding-right : 5px;
+	margin : 0px;
+	margin-left : 10px;
+	margin-right : 10px;   
+	min-height: 20px;
+}
+
+a.ticket:hover, a.updated_ticket:hover {
+	display : block;
+	color : #506266;
+	border-right : 0px;
+	padding-top : 0px;
+	padding-bottom : 0px;
+	margin-right : 10px;
+	margin-left : 10px;	
+}
+
+a.updated_ticket {
+	display : block;
+	min-height : 20px;
+	color : #000;
+	text-decoration : none;
+	padding : 0px;
+	padding-right : 5px;
+	margin : 0px;
+	margin-left : 10px;
+	margin-right : 10px;
+	background-color: #bcc499;
+	cursor: pointer;
+}
+
+a.selected_ticket {
+	padding-right : 32px;
+	margin : 0px;
+	margin-right : -17px;
+	margin-left : 8px;
+	display : block;
+	padding-left : 0px;
+	padding-top : 5px;
+	padding-bottom : 7px;
+	text-decoration : none;
+	color : #506266;
+	background-color : #f1f1f1;
+	border : 2px solid #92A68A;
+	border-right : none;
+	-webkit-border-top-left-radius : 5px;
+	-webkit-border-bottom-left-radius : 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+div.tickets_list .ticket_id_list {
+    display: block;
+	float : left;
+	width : 30px;
+	text-align : center;
+	padding-top : 2px;
+	cursor: pointer;
+}
+div.tickets_list .ticket_title_list {
+    display: block;
+	width : 310px;
+	padding-left : 5px;
+	padding-right : 5px;
+	padding-top : 2px;
+	margin-left : 31px;
+	cursor: pointer;
+}
+div.tickets_list .ticket_severity_list {
+    display: block;
+	float : right;
+	width : 15px;
+	text-align : center;
+	padding-top : 5px;
+	cursor: pointer;
+}
+div.tickets_list .ticket_status_list {
+    display: block;
+	float : right;
+	width : 15px;
+	text-align : center;
+	padding-left : 5px;
+	padding-top : 5px;
+	cursor: pointer;
+}
+
+#corrected_bugs_list {display: none;}
+
+div.tickets_list_message {
+    padding: 30px;
+    text-align: center;
+    display: none;
+}
+#retry_loading_tickets {
+    cursor: pointer;
+    color: #92A68A
+}
+#retry_loading_tickets:hover {
+    cursor: pointer;
+    color: #506266;
+}

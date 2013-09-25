@@ -1,0 +1,15 @@
+## -*- coding: utf-8 -*-
+To: ${to}
+From: noreply@naphtaline.net
+Subject: Naphtaline.net : your project is available !
+Content-type: text/plain
+
+Hello ${userName},
+
+your project, ${projectName}, is now on line. You can reach it at http://projects.naphtaline.net/${projectWebName}
+
+Your login is '${userName}' and your password is '${password}'
+
+--
+Jérémy
+For any suggestion, remark  or feedback, please contact me through the blog (http://blog.naphtaline.net ), via the Naphtaline project webpage (http://projects.naphtaline.net/naphtaline ) or though mail at jeremy@naphtaline.net or support@naphtaline.net

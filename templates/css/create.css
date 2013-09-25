@@ -1,0 +1,87 @@
+div.ticket form {
+    margin: 0px;
+    padding: 0px;
+}
+
+#title {
+    font-size: 10pt;
+    border : none;
+    background-color: #AAAAAA;
+    padding: 5px;
+    color : #000000;
+    width : 97%;
+}
+
+#description {
+	font-size: 10pt;
+	border : none;
+	background-color: #AAAAAA;
+	padding: 5px;
+	color : #000000;
+	width: 97%;
+	height: 150px;
+}
+
+div.buttons {
+    text-align: center;
+    margin-top : 30px;
+}
+#ok {
+    width: 70px;
+    margin: auto;
+}
+
+div.add_files {
+    padding-top : 15px;
+}
+div.add_files_title {
+	color : #7B8F8A;
+	font-size : 12pt;
+}
+#add_file {
+    color : #92A68A;
+    cursor: pointer;
+}
+#add_file:hover {
+    color : #506266;
+    cursor: pointer;
+}
+.remove, .remove_existing {
+    cursor: pointer;
+}
+.remove img, .remove_existing img {
+    border: none;
+}
+
+div.ticket div.loading {
+    text-align: center;
+    font-size: 12pt;
+    color: #506266;
+    padding: 30px;
+    display: none;
+}
+div.ticket div.thanks {
+    padding: 30px;
+    display: none;
+}
+div.ticket div.error {
+    padding: 30px;
+    display: none;
+}
+div.ticket #tryagain {
+    color: #92A68A;
+    cursor: pointer;
+}
+div.ticket #tryagain:hover {
+    color: #506266;
+}
+div.ticket div.file_message {
+    color: #506266;
+    height: 14px;
+    display: none;
+}
+div.ticket div.file_message img {
+    float: left;
+    height: 14px;
+    margin-right : 5px;
+}

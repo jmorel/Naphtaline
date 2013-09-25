@@ -1,0 +1,43 @@
+body {
+	background-color: #556165;
+	width: 1000px;
+	font-family: Arial;
+	font-size : 10pt;
+	margin: auto;
+	margin-top: 50px;
+}
+
+div.logo {
+	color: #C9CECE;
+    height: 180px;
+}
+div.logo img {
+	width : 200px;
+	border: none;
+	float: left;
+}
+div.logo div {
+	margin-left : 230px;
+}
+div.name {
+	font-size: 30pt;
+	font-weight: bold;
+	padding-top : 30px;
+}
+div.subtitle {
+    font-size: 12pt;
+}
+
+div.page_content {
+	background-color: #FFFFFF;
+	padding: 30px;
+	margin: auto;
+}
+
+a {
+    text-decoration: none;
+    color: #92A68A;
+}
+a:hover {
+    color: #506266;
+}

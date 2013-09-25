@@ -1,0 +1,99 @@
+## -*- coding: utf-8 -*-
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>Naphtaline: BUG Tracking made REALLY simple (and beautiful)</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+	<link rel="stylesheet" type="text/css" href="/css/layout-1col.css" />
+    <link rel="stylesheet" type="text/css" href="/css/new_project.css" />
+    
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script type="text/javascript" src="/js/jquery.pause.js"></script>
+	<script type="text/javascript" src="/js/new_project.js"></script>
+	
+</head>
+
+
+<body>
+
+	<div class="logo">
+		<img class="logo" src="/pix/logo.png" alt="naphtaline logo">
+		<div class="name">Naphtaline</div>
+		<div class="subtitle">Bug tracking made really simple</div>
+	</div>
+	
+	<div class="page_content">
+	   <div class="title">New project</div>
+	   <div class="info">
+	       Use this form to create your own project on <a href="http://www.naphtaline.net">Naphtaline</a>.<br/>
+	       You don't know what Naphtaline is? <a href="http://www.naphtaline.net/about">Click here</a> to find out more.
+	   </div>
+	   
+	   <form id="new_project">
+	       <div class="title2">First step: your project's properties</div>
+	       <div class="entry">Your project's name</div>
+	       <div class="error" id="name_empty">You cannot choose an empty name.</div>
+	       <input type="text" name="projectName" id="projectName"/>
+	       
+	       <div class="entry">Your project's webname</div>
+	       The webname is the name that will be included in the URL. It can only contains a-z0-9 characters.<br/>
+	       e.g. for a project called "My very own project with an awfully long name that gives too much information" with the webname "myproject", the project web page will be http://project.naphtaline.net/myproject<br/>
+	       <div class="error" id="webname_chars">The webname you chose contains unauthorised characters.</div>
+	       <div class="error" id="webname_used">The webname you chose is already used by another project.</div>
+	       <div class="error" id="webname_empty">You cannot choose an empty webname.</div>
+	       <input type="text" name="projectWebName" id="projectWebName"/>
+		   <div class="entry">Your project's language</div>
+			Choose the language you want to use for your interface.<br/>
+		   <select name="lang" id="lang">
+		   		<option value="en" selected="selected">english</option>
+				<option value="fr">français</option>
+		   </select>
+	       
+	       
+	       <div class="title2">Second step: your administrator account</div>
+	       <div class="entry">Login</div>
+	       <div class="error" id="login_empty">You must choose a login</div>
+	       <input type="text" name="login" id="login"/>
+	       <div class="entry">Password</div>
+	       <div class="error" id="pwd_error">You cannot chose an empty password.</div>
+	       <div class="error" id="pwd_bis_error">The two passwords you entered are different.</div>
+	       <div class="pwd1">
+	           Enter your password<br/>
+    	       <input type="password" name="pwd1" id="pwd1"/>
+    	   </div>
+    	   <div class="pw2">
+    	       Re-type in your password<br/>
+    	       <input type="password" name="pwd2" id="pwd2"/>
+    	   </div>
+	       <div class="entry">E-mail</div> 
+	       <div class="error" id="email_empty">You must enter an email</div>
+	       <input type="text" name="email" id="email"/>
+	       
+	       <div class="title2">Last step: create your project</div>
+	       <input type="submit" name="ok" value="create" id="create"/>
+	   </form>
+	   
+	   <div class="loading">
+	       <img src="/pix/loading_wheel.gif" alt="loading" /><br/>
+	       Please wait while we process your request.
+	   </div>
+	   
+	   <div class="error_connect">
+	       An error occured during the processing. Please try again later.
+	   </div>
+	   
+	   <div class="success">
+	   		Your project was successfuly created. A mail has been sent to you.<br/>
+	   		You'll be redirected to your project page. If you're not redirected within 15 seconds, <a href="" id="project_link">click here</a>
+	   </div>
+	   
+	</div>
+		
+
+</body>
+
+</html>

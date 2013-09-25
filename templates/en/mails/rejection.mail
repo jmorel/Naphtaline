@@ -1,0 +1,12 @@
+## -*- coding: utf-8 -*-
+To: ${to}
+From: noreply@naphtaline.net
+Subject: Naphtaline.net : your request has been rejected
+Content-type: text/plain
+
+Hello ${userName},
+
+your subscription request at ${projectName} has been rejected by one of the project's administrators.
+
+--
+Jérémy

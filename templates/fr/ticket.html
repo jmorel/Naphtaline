@@ -1,0 +1,82 @@
+## -*- coding: utf-8 -*-
+
+<%
+    severityCaption = {
+        'bug': ['dummy', u'léger', u'sérieux', u'critique'],
+        'feature': ['dummy', u'faible', u'forte', u'critique']
+    }
+    severityPicture = {
+        'bug': ['dummy', 'yellow_square.png', 'orange_square.png', 'red_square.png'],
+        'feature': ['dummy', 'yellow_square.png', 'orange_square.png', 'red_square.png']
+    }
+    statusCaption= {
+        'bug': ['dummy', u'corrigé', u'en cours', u'inconnu'],
+        'feature': ['dummy', u'en place', u'en cours', u'inconnu', u'refusé']
+    }
+    statusPicture= {
+        'bug': ['dummy', 'green_square.png', 'grey_square.png', 'white_square.png'],
+        'feature': ['dummy', 'green_square.png', 'grey_square.png', 'white_square.png', 'crossed_square.png']
+    }
+    
+    def processDate(day, month, year):
+        days = map(str, range(1,32))
+        days[0] = '1er'
+        months = [u'janvier', u'février', u'mars', u'avril', u'mai', u'juin', u'juillet', u'août', u'septembre', u'octobre', u'novembre', u'décembre']
+        return days[day-1] + ' ' + months[month-1] + ' ' +str(year)
+%>
+
+% if ticket['creatorID'] == userID or userLevel == 2:
+<div class="edit_delete">
+    <span id="edit_button">éditer</span> | <span id="delete_button">supprimer</span>
+</div>
+% endif
+
+<div class="ticket_type_id">
+    ${(category=='bug')*u'Bug'+(category=='feature')*u'Fonctionnalité'} #${ticket['id']}
+    <span id="ticket_author">soumis par ${ticket['creator'].decode('utf-8')} le ${processDate(ticket['creationDate']['day'], ticket['creationDate']['month'], ticket['creationDate']['year'])}</span>
+</div>
+
+<div class="ticket_title">${ticket['name']}</div>
+
+<div class="ticket_status">
+    <div class="field">Statut</div>
+	<div class="value">${statusCaption[category][ticket['status']].capitalize()} (<img src="/pix/${statusPicture[category][ticket['status']]}" alt="${statusCaption[category][ticket['status']]}" />)</div>
+</div>
+<div class="ticket_severity">
+	<div class="field">Severity</div>
+	<div class="value">${severityCaption[category][ticket['severity']].capitalize()} (<img src="/pix/${severityPicture[category][ticket['severity']]}" alt="${severityCaption[category][ticket['severity']]}" />)</div>
+</div>
+<div class="ticket_description">Description</div>
+<div class="ticket_description_content">
+    % if len(ticket['files']) > 0:
+	<div class="ticket_files">
+		<div class="ticket_files_title">Fichiers joints:</div>
+		<ul>
+		    % for file in ticket['files']:
+			<li><a href="/${projectWebName}/file/${file['id']}">${file['name']}</a></li>
+			% endfor
+		</ul>
+	</div>
+	% endif
+
+	${ticket['description']}
+</div>
+
+<div class="delete_loading">
+    <img src="/pix/loading_wheel.gif" alt="loading wheel"/> <br/>
+    Merci de patienter pendant la suppression du ticket.
+</div>
+<div class="delete_error">Une erreur est survenue: nous n'avons pas pu supprimer le ticket.</div>
+<div class="delete_success">
+    Ce ticket est maintenant supprimé.<br/>
+    Si vous n'êtes pas redirigés dans les 5 prochaines secondes, <a href="/${projectWebName}/${category}">cliquez ici</a>.
+</div>
+
+<div class="edit_loading">
+    <img src="/pix/loading_wheel.gif" alt="loading wheel"/> <br/>
+    Merci de patienter pendant le chargement du formulaire.
+</div>
+
+<div class="misc">
+    <div id="deleteMsg">Etes vous sûr de vouloir supprimer ${(category=='bug')*'ce bug'+(category=='feature')*u'cette fonctionnalité'}?</div>
+</div>

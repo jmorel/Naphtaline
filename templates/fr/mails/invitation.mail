@@ -1,0 +1,18 @@
+## -*- coding: utf-8 -*-
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+To: ${to}
+From: noreply@naphtaline.net
+Subject: Naphtaline.net : invitation
+
+Bonjour,
+
+l'administrateur ${author} vous invite à rejoindre le projet ${projectName} sur Naphtaline.net.
+Pour ce faire, suivez ce lien : http://projects.naphtaline.net/${projectWebName}/register
+
+% if msg != '' :
+${author} ajoute :
+${msg}
+% endif
+
+A bientôt sur Naphtaline.net !

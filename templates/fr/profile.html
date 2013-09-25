@@ -1,0 +1,95 @@
+## -*- coding: utf-8 -*-
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>Naphtaline: BUG Tracking made REALLY simple (and beautiful)</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+	<link rel="stylesheet" type="text/css" href="/css/layout-2col.css" />
+	<link rel="stylesheet" type="text/css" href="/css/header.css" />
+	<link rel="stylesheet" type="text/css" href="/css/first_col_elements.css" />
+	<link rel="stylesheet" type="text/css" href="/css/profile.css" />
+
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script type="text/javascript" src="/js/jquery.pause.js"></script>
+	<script type="text/javascript" src="/js/profile.js"></script>
+    
+    
+</head>
+
+<body>
+
+    <div class="misc">
+        <div id="projectWebName">${projectWebName}</div>
+    </div>
+    
+	<div class="header">
+		<div class="searchbox"><form class="search" action="/${projectWebName}/search" method="GET"><input type="text" name="search" value="rechercher"/></form></div>
+		<span class="project_name">Projet ${projectName} sur Naphtaline</span>
+	</div>
+
+	<div class="col1">
+		<img class="logo" src="/pix/logo.png" alt="naphtaline logo"/>
+		<div class="pages">
+			<a class="page" href="/${projectWebName}/bug">BUGS</a>
+			<a class="page" href="/${projectWebName}/feature">FONCTIONNALITES</a>
+			% if int(userLevel) == 2:
+			<a class="page" href="/${projectWebName}/search">RECHERCHE</a>
+			<a class="page_no_bottom_border" href="/${projectWebName}/users">UTILISATEURS</a>
+			% else:
+			<a class="page_no_bottom_border" href="/${projectWebName}/search">RECHERCHE</a>
+			% endif
+			<a class="selected_page" href="/${projectWebName}/profile">PROFIL</a>
+		</div>
+		<a class="disconnect" href="/${projectWebName}/disconnect">SE DECONNECTER</a>
+	</div>
+	
+	<div class="col2">
+	   
+	   <div class="section">
+	       <div class="title">${login}</div>
+	       <div class="infos">Sur cette page vous pourrez éditer vos informations personnelles.</div>
+	       <div class="row">
+	           <div class="field">Email</div>
+	           <div class="content">
+	               <img src="/pix/email_edit.png" alt="email edit" id="edit_mail" /> <span id="content_mail">${mail}</span>
+	           </div> 
+	           <form class="edit_mail">
+	               <input type="text" name="mail" id="mail" value="${mail}"/>
+	               <input type="submit" value="OK" id="update_mail"/>
+	           </form>
+	           <div class="loading"><img src="/pix/loading_wheel.gif" alt="loading wheel" /></div>
+	           <div class="error">Une erreur est survenue. Merci de réessayer plus tard.</div>
+	           <div class="success">Votre adresse email a été mise à jour.</div>
+	       </div>
+	       <div class="row">
+	           <div class="field">Mot de passe</div>
+	           <div class="content">
+	               <img src="/pix/email_edit.png" alt="email edit" id="edit_pwd" />
+	           </div>
+	           <form class="edit_pwd">
+	               <div class="pwd1">
+	                   Entrez votre mot de passe<br/>
+    	               <input type="password" name="pwd1" id="pwd1"/>
+    	           </div>
+    	           <div class="pwd2">
+    	               Ré-entrez votre mot de passe (pour vérification) <br/>
+    	               <input type="password" name="pwd2" id="pwd2"/>
+    	           </div>
+	               <input type="submit" value="OK" id="edit_pwd"/>
+	           </form>
+	           <div class="success">Votre mot de passe a été mis à jour.</div>
+	           <div class="error">Une erreur est survenue. Merci de réessayer plus tard.</div>
+	           <div class="error_pwd">Les deux mots de passe que vous avez entré sont différents. Vérifiez les puis réessayez.</div>
+	       </div>
+	   </div>
+	   	   
+
+	</div>
+	
+</body>
+
+</html>

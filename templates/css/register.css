@@ -1,0 +1,54 @@
+div.title {
+    color : #506266;
+	font-size : 18pt;
+	padding-bottom: 10px;
+}
+
+div.title2 {
+    color : #506266;
+	font-size : 14pt;
+	padding-top: 20px;
+	padding-bottom: 10px;
+}
+
+div.misc {
+	display: none;	
+}
+
+div.entry {
+    padding-top: 15px;
+    padding-bottom: 5px;
+    color : #506266;
+}
+
+#projectName, #projectWebName, #login, #pwd1, #pwd2, #email {
+    font-size: 10pt;
+	border : none;
+	background-color: #AAAAAA;
+	padding: 5px;
+	color : #000000;
+	margin-top: 3px;
+    width: 300px;
+}
+
+div.pwd1 {
+    float: left;
+    width: 330px;
+}
+
+div.pwd2 {
+    margin-left: 330px;
+}
+
+div.loading, div.error_connect, div.success {
+    padding: 30px;
+    text-align: center;
+    color : #506266;
+    font-size: 12pt;
+    display: none;
+}
+
+div.error {
+    color: #bc0000;
+    display: none;
+}

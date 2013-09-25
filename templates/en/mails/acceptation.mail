@@ -1,0 +1,15 @@
+## -*- coding: utf-8 -*-
+To: ${to}
+From: noreply@naphtaline.net
+Subject: Naphtaline.net : your subscription request has been accepted
+Content-type: text/plain
+
+Hello ${userName},
+
+your subscription request to project ${projectName} has been accepted by the project's administrator.
+
+You can now log in at http://projects.naphtaline.net/${projectWebName} using the login and password that you provided.
+
+--
+Jérémy
+For any suggestion, remark  or feedback, please contact me through the blog (http://blog.naphtaline.net ), via the Naphtaline project webpage (http://projects.naphtaline.net/naphtaline ) or though mail at jeremy@naphtaline.net or support@naphtaline.net
